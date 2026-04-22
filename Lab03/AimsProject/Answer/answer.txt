@@ -1,0 +1,23 @@
+Question: Is JAVA a Pass by Value or a Pass by Reference programming language?
+
+Answer:
+Java là ngôn ngữ truyền tham số theo giá trị (pass by value), không phải pass by reference.
+
+Khi gọi một phương thức, Java luôn tạo ra một bản sao của giá trị biến để truyền vào hàm:
+- Với kiểu dữ liệu nguyên thủy (int, double,...): giá trị được sao chép trực tiếp.
+- Với kiểu đối tượng (object): giá trị được sao chép là tham chiếu (reference) đến đối tượng, không phải bản thân đối tượng.
+Điều này có nghĩa là trong trường hợp object, cả biến bên ngoài và tham số trong hàm đều trỏ đến cùng một đối tượng trong bộ nhớ, nhưng tham chiếu vẫn là bản sao.
+
+Ví dụ:
+DigitalVideoDisc dvd1 = new DigitalVideoDisc("Jungle");
+DigitalVideoDisc dvd2 = new DigitalVideoDisc("Cinderella");
+swap(dvd1, dvd2);
+
+Trong hàm swap: o1 và o2 chỉ là bản sao của tham chiếu. Việc hoán đổi o1 và o2 chỉ thay đổi trong phạm vi hàm, không ảnh hưởng đến dvd1 và dvd2 bên ngoài. Vì vậy sau khi gọi swap, hai đối tượng bên ngoài vẫn không đổi.
+
+Tuy nhiên:
+changeTitle(dvd1, "New Title");
+
+Trong trường hợp này, tham chiếu được sao chép vẫn trỏ đến cùng một object. Khi thay đổi thuộc tính bên trong object (ví dụ setTitle), dữ liệu của object thực sự bị thay đổi. Do đó dvd1 sẽ bị ảnh hưởng.
+
+Kết luận: Java luôn là pass by value. Với object, Java truyền bản sao của tham chiếu nên không thể thay đổi reference gốc, nhưng có thể thay đổi nội dung của object.
