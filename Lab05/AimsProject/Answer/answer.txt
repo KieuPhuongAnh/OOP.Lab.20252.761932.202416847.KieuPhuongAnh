@@ -1,0 +1,42 @@
+Exception (ngoại lệ) là cơ chế xử lý các lỗi xảy ra trong lúc chương trình đang chạy (runtime errors), ví dụ:
+- File không tồn tại.
+- Mất kết nối mạng.
+- Thiếu bộ nhớ.
+- Dữ liệu đầu vào không hợp lệ.
+
+Mục tiêu là tách riêng phần phát hiện lỗi và phần xử lý lỗi, giúp chương trình dễ bảo trì hơn.
+
+Ưu điểm của Exception:
+- Buộc chương trình phải xử lý lỗi hoặc dừng chương trình.
+- Lỗi có thể được truyền lên các hàm cấp cao hơn để xử lý.
+- Tự động giải phóng tài nguyên khi xảy ra lỗi (stack unwinding).
+- Mã nguồn sạch hơn, không phải kiểm tra lỗi sau mỗi lời gọi hàm.
+
+Các nguyên tắc quan trọng:
+✔ Dùng assert cho lỗi lập trình
+- Điều kiện "không bao giờ được sai".
+- Ví dụ: một biến luôn phải > 0.
+
+✔ Dùng exception cho lỗi có thể xảy ra khi chạy chương trình
+- File không tồn tại.
+- Người dùng nhập dữ liệu sai.
+- Lỗi mạng.
+
+✔ Chỉ dùng exception cho các tình huống bất thường
+Không nên dùng exception như một luồng xử lý thông thường của chương trình.
+
+✔ Throw by value, Catch by reference
+Không nên catch bằng giá trị vì sẽ tạo bản sao đối tượng.
+
+✔ Chỉ bắt (catch) khi có thể xử lý được
+Nếu không biết cách xử lý thì để exception tiếp tục truyền lên trên (propagate).
+
+✔ Ưu tiên dùng exception chuẩn
+Ví dụ:
+std::invalid_argument
+std::out_of_range
+std::runtime_error
+Nếu cần loại lỗi riêng thì kế thừa từ std::exception.
+
+✔ Không để exception thoát khỏi destructor
+Destructor phải luôn an toàn và không phát sinh exception.
